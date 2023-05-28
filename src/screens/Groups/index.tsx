@@ -1,10 +1,11 @@
-import { Text, View } from "react-native";
-import { stylesGroups } from "./styles";
+import { Header } from "../../components/Header";
+import { Container, Title } from "./styles";
 
 export function Groups() {
   return (
-    <View style={stylesGroups.container}>
-      <Text>Oi</Text>
-    </View>
+    <Container>
+      <Header />
+      <Title>sdscdf</Title>
+    </Container>
   );
 }
