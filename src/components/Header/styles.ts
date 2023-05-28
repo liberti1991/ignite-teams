@@ -5,6 +5,11 @@ export const HeaderContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
+`;
+
+export const HeaderBtn = styled.TouchableOpacity`
+  flex: 1;
 `;
 
 export const HeaderLogo = styled.Image`
