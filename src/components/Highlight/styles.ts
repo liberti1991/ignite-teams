@@ -16,7 +16,7 @@ export const HighlightTitle = styled.Text`
 
 export const HighlightSubTitle = styled.Text`
   ${(p) => css`
-    font-size: ${p.theme.FONT_SIZE.XL}px;
+    font-size: ${p.theme.FONT_SIZE.SM}px;
     font-family: ${p.theme.FONT_FAMILY.REGULAR};
     color: ${p.theme.COLORS.GRAY_300};
   `}
