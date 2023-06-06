@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 export const ListEmptyContainer = styled.View`
   flex: 1;
@@ -8,7 +8,10 @@ export const ListEmptyContainer = styled.View`
 
 export const ListEmptyMessage = styled.Text`
   text-align: center;
-  font-size: ${(p) => p.theme.FONT_SIZE.SM}px;
-  font-family: ${(p) => p.theme.FONT_FAMILY.REGULAR};
-  color: ${(p) => p.theme.COLORS.GRAY_300};
+
+  ${(p) => css`
+    font-size: ${p.theme.FONT_SIZE.SM}px;
+    font-family: ${p.theme.FONT_FAMILY.REGULAR};
+    color: ${p.theme.COLORS.GRAY_300};
+  `}
 `;

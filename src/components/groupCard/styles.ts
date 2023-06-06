@@ -1,5 +1,5 @@
 import { TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -13,9 +13,11 @@ export const GroupCardContainer = styled(TouchableOpacity)`
 `;
 
 export const GroupCardTitle = styled.Text`
-  font-size: ${(p) => p.theme.FONT_SIZE.MD}px;
-  color: ${(p) => p.theme.COLORS.GRAY_200};
-  font-family: ${(p) => p.theme.FONT_FAMILY.REGULAR};
+  ${(p) => css`
+    font-size: ${p.theme.FONT_SIZE.MD}px;
+    color: ${p.theme.COLORS.GRAY_200};
+    font-family: ${p.theme.FONT_FAMILY.REGULAR};
+  `}
 `;
 
 export const GroupCardIcon = styled(Icon).attrs(({ theme }) => ({
