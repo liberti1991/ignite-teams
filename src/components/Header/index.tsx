@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import logoImg from "../../assets/logo.png";
 import { HeaderBtn, HeaderContainer, HeaderLogo } from "./styles";
 
@@ -7,11 +8,17 @@ interface IHeader {
   showBtn?: boolean;
 }
 
-export function Header({ showBtn }: IHeader) {
+export function Header({ showBtn = false }: IHeader) {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.navigate("groups");
+  }
+
   return (
     <HeaderContainer>
       {showBtn && (
-        <HeaderBtn>
+        <HeaderBtn onPress={handleGoBack}>
           <Icon name="left" color="#FFF" size={32} />
         </HeaderBtn>
       )}
@@ -19,4 +26,3 @@ export function Header({ showBtn }: IHeader) {
     </HeaderContainer>
   );
 }
-//  parei no bibliotoca de icones

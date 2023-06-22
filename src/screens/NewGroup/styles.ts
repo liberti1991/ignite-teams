@@ -1,3 +1,4 @@
+import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styled from "styled-components/native";
 
@@ -7,7 +8,7 @@ export const NewGroupContainer = styled.View`
   padding: 24px;
 `;
 
-export const NewGroupContent = styled.View`
+export const NewGroupContent = styled(SafeAreaView)`
   flex: 1;
   justify-content: center;
 `;

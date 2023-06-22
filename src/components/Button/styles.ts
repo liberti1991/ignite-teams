@@ -15,7 +15,7 @@ export const ButtonContainer = styled(TouchableOpacity)<ButtonStyles>`
 
 export const ButtonTitle = styled.Text`
   ${(p) => css`
-    font-size: ${p.theme.FONT_SIZE.MD};
+    font-size: ${p.theme.FONT_SIZE.MD}px;
     color: ${p.theme.COLORS.WHITE};
     font-family: ${p.theme.FONT_FAMILY.BOLD};
   `}
