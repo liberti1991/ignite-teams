@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
-import { FlatList } from "react-native";
+import { Alert, FlatList } from "react-native";
 import { Button } from "../../components/Button";
 import { ButtonIcon } from "../../components/ButtonIcon";
 import { Filter } from "../../components/Filter";
@@ -9,6 +9,10 @@ import { Highlight } from "../../components/Highlight";
 import { Input } from "../../components/Input";
 import { ListEmpty } from "../../components/ListEmpty";
 import { PlayerCard } from "../../components/PlayerCard";
+import { PlayerStorageDTO } from "../../storage/player/PlayerStorageSTO";
+import { playerAddByGroup } from "../../storage/player/playerAddByGroup";
+import { playerGetByGroup } from "../../storage/player/playerGetByGroup";
+import { AppError } from "../../utils/AppError";
 import {
   PlayerContainer,
   PlayerForm,
@@ -23,10 +27,38 @@ type IRouteParams = {
 export function Players() {
   const [team, teamSet] = useState<string>("Time A");
   const [player, playerSet] = useState<string[]>([]);
+  const [newPlayerName, newPlayerSet] = useState<string>("");
 
   const route = useRoute();
 
   const { group } = route.params as IRouteParams;
+
+  async function handleAddPlayer() {
+    if (newPlayerName.trim().length === 0) {
+      return Alert.alert("New Player", "informe o nome do jogador");
+    }
+
+    const newPlayer: PlayerStorageDTO = {
+      name: newPlayerName,
+      team,
+    };
+
+    try {
+      await playerAddByGroup(newPlayer, group);
+
+      const players = await playerGetByGroup(group);
+      console.log(players);
+
+      // navigation.navigate("players", { group: group });
+    } catch (err) {
+      if (err instanceof AppError) {
+        Alert.alert("New Player", err.message);
+      } else {
+        Alert.alert("New Player", "Nao foi possível cadastrar um novo jogador");
+        console.log(err);
+      }
+    }
+  }
 
   return (
     <PlayerContainer>
@@ -35,9 +67,13 @@ export function Players() {
       <Highlight title={group} subtitle="Adicione a galera e separe os times" />
 
       <PlayerForm>
-        <Input placeholder="Nome da pessoa" autoCorrect={false} />
+        <Input
+          placeholder="Nome da pessoa"
+          autoCorrect={false}
+          onChangeText={newPlayerSet}
+        />
 
-        <ButtonIcon icon="add" />
+        <ButtonIcon icon="add" onPress={handleAddPlayer} />
       </PlayerForm>
 
       <PlayerHeaderList>
